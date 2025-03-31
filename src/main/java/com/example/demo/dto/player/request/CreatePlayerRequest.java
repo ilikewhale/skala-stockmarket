@@ -1,6 +1,6 @@
 package com.example.demo.dto.player.request;
 
-import com.example.demo.domain.Player;
+import com.example.demo.domain.player.Player;
 import lombok.Getter;
 
 @Getter

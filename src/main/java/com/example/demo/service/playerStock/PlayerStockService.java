@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.playerStock;
 
-import com.example.demo.domain.Player;
-import com.example.demo.domain.PlayerStock;
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.player.Player;
+import com.example.demo.domain.playerStock.PlayerStock;
+import com.example.demo.domain.stock.Stock;
 import com.example.demo.dto.player.response.PlayerResponse;
 import com.example.demo.dto.playerStock.request.CreatePlayerStockRequest;
 import com.example.demo.dto.playerStock.request.DeletePlayerStockRequest;
@@ -10,9 +10,9 @@ import com.example.demo.dto.playerStock.request.UpdateQuantityRequest;
 import com.example.demo.dto.playerStock.response.CreatePlayerStockResponse;
 import com.example.demo.dto.playerStock.response.PlayerStockResponse;
 import com.example.demo.dto.stock.response.StockResponse;
-import com.example.demo.repository.PlayerRepository;
-import com.example.demo.repository.PlayerStockRepository;
-import com.example.demo.repository.StockRepository;
+import com.example.demo.repository.player.PlayerRepository;
+import com.example.demo.repository.playerStock.PlayerStockRepository;
+import com.example.demo.repository.stock.StockRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

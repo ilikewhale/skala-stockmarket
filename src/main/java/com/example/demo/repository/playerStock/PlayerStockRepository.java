@@ -1,11 +1,10 @@
-package com.example.demo.repository;
+package com.example.demo.repository.playerStock;
 
-import com.example.demo.domain.Player;
-import com.example.demo.domain.PlayerStock;
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.player.Player;
+import com.example.demo.domain.playerStock.PlayerStock;
+import com.example.demo.domain.stock.Stock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Arrays;
 import java.util.List;
 
 public interface PlayerStockRepository extends JpaRepository<PlayerStock, Long> {

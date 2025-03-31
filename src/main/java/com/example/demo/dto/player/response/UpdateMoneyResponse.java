@@ -1,6 +1,6 @@
 package com.example.demo.dto.player.response;
 
-import com.example.demo.domain.Player;
+import com.example.demo.domain.player.Player;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 

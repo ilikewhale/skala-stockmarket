@@ -1,6 +1,6 @@
-package com.example.demo.repository;
+package com.example.demo.repository.player;
 
-import com.example.demo.domain.Player;
+import com.example.demo.domain.player.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayerRepository extends JpaRepository<Player, Long> {

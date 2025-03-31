@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.service.player;
 
-import com.example.demo.domain.Player;
+import com.example.demo.domain.player.Player;
 import com.example.demo.dto.player.request.*;
 import com.example.demo.dto.player.response.*;
-import com.example.demo.repository.PlayerRepository;
+import com.example.demo.repository.player.PlayerRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

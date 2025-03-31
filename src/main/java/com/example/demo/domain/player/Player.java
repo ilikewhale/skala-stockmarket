@@ -1,6 +1,5 @@
-package com.example.demo.domain;
+package com.example.demo.domain.player;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

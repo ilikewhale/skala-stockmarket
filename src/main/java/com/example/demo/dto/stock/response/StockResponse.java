@@ -1,6 +1,6 @@
 package com.example.demo.dto.stock.response;
 
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.stock.Stock;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 

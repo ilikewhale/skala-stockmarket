@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.playerStock;
 
 import com.example.demo.dto.player.response.PlayerResponse;
 import com.example.demo.dto.playerStock.request.CreatePlayerStockRequest;
@@ -7,7 +7,7 @@ import com.example.demo.dto.playerStock.request.UpdateQuantityRequest;
 import com.example.demo.dto.playerStock.response.CreatePlayerStockResponse;
 import com.example.demo.dto.playerStock.response.PlayerStockResponse;
 import com.example.demo.dto.stock.response.StockResponse;
-import com.example.demo.service.PlayerStockService;
+import com.example.demo.service.playerStock.PlayerStockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,10 +1,10 @@
-package com.example.demo.controller;
+package com.example.demo.controller.stock;
 
 import com.example.demo.dto.stock.request.CreateStockRequest;
 import com.example.demo.dto.stock.request.UpdatePriceRequest;
 import com.example.demo.dto.stock.response.CreateStockResponse;
 import com.example.demo.dto.stock.response.StockResponse;
-import com.example.demo.service.StockService;
+import com.example.demo.service.stock.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

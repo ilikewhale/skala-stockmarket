@@ -1,8 +1,8 @@
 package com.example.demo.dto.playerStock.response;
 
-import com.example.demo.domain.Player;
-import com.example.demo.domain.PlayerStock;
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.player.Player;
+import com.example.demo.domain.playerStock.PlayerStock;
+import com.example.demo.domain.stock.Stock;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package com.example.demo.dto.stock.request;
 
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.stock.Stock;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

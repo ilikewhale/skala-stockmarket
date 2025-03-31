@@ -1,11 +1,11 @@
-package com.example.demo.service;
+package com.example.demo.service.stock;
 
-import com.example.demo.domain.Stock;
+import com.example.demo.domain.stock.Stock;
 import com.example.demo.dto.stock.request.CreateStockRequest;
 import com.example.demo.dto.stock.request.UpdatePriceRequest;
 import com.example.demo.dto.stock.response.CreateStockResponse;
 import com.example.demo.dto.stock.response.StockResponse;
-import com.example.demo.repository.StockRepository;
+import com.example.demo.repository.stock.StockRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

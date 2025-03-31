@@ -1,5 +1,7 @@
-package com.example.demo.domain;
+package com.example.demo.domain.playerStock;
 
+import com.example.demo.domain.stock.Stock;
+import com.example.demo.domain.player.Player;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

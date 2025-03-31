@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.controller.player;
 
 import com.example.demo.dto.player.request.*;
 import com.example.demo.dto.player.response.*;
-import com.example.demo.service.PlayerService;
+import com.example.demo.service.player.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
