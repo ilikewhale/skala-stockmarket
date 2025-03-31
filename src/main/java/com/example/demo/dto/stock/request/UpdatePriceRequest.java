@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class UpdatePriceRequest {
-    private Double newPrice;
+    private Long newPrice;
 }

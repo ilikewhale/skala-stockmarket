@@ -44,7 +44,7 @@ public class Player {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Player(String playerId, String playerPw, String confirmation, long playerMoney) {
+    public Player(String playerId, String playerPw, String confirmation, Long playerMoney) {
         this.playerId = playerId;
         this.playerPw = playerPw;
         this.confirmation = confirmation;
@@ -68,13 +68,29 @@ public class Player {
     }
 
     public void addMoney(Long extraPlayerMoney) {
+        validateNumber(extraPlayerMoney);
         this.playerMoney += extraPlayerMoney;
     }
 
     public void withdrawMoney(Long withdrawMoney) {
+        validateNumber(withdrawMoney);
         if (playerMoney - withdrawMoney < 0) {
             throw new IllegalArgumentException("More money entered than you have");
         }
         this.playerMoney -= withdrawMoney;
+    }
+
+    public void payMoney(Long money) {
+        validateNumber(money);
+        if (playerMoney - money < 0) {
+            throw new IllegalArgumentException("More money entered than you have");
+        }
+        this.playerMoney -= money;
+    }
+
+    private void validateNumber(Long num) {
+        if (num < 0) {
+            throw new IllegalArgumentException("validation error in number");
+        }
     }
 }

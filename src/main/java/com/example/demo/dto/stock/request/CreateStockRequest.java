@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class CreateStockRequest {
     private String stockName;
-    private Double price;
+    private Long price;
 
     public Stock toEntity() {
         return Stock.builder()

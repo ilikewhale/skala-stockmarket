@@ -15,21 +15,23 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
-public class Stock {
+public class PlayerStock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "stock_id")
-    private Long stockId;
+    @Column(name = "player_stock_id")
+    private Long playerStockId;
 
-    @Column(name = "stock_name", nullable = false, unique = true)
-    private String stockName;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Player player;
 
-    @Column(name = "price", nullable = false)
-    private Long price;
+    @ManyToOne
+    @JoinColumn(name = "stock_id")
+    private Stock stock;
 
-    @Transient
-    private Double changeRate;
+    @Column(name = "quantity", nullable = false)
+    private Long quantity;
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)
@@ -40,15 +42,18 @@ public class Stock {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Stock(String stockName, Long price) {
-        this.stockName = stockName;
-        this.price = price;
-        this.changeRate = 0.0;
+    public PlayerStock(Player player, Stock stock, Long quantity) {
+        this.player = player;
+        this.stock = stock;
+        this.quantity = quantity;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void updatePrice(Long newPrice) {
-        this.price = newPrice;
+    public void updateQuantity(Long quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("More quantity entered than you have");
+        }
+        this.quantity -= quantity;
     }
 }

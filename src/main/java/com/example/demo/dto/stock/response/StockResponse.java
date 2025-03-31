@@ -11,7 +11,7 @@ public class StockResponse {
 
     private final Long stockId;
     private final String stockName;
-    private final Double price;
+    private final Long price;
     private final Double changeRate;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
