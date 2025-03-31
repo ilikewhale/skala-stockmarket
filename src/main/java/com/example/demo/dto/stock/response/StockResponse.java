@@ -24,7 +24,7 @@ public class StockResponse {
         this.stockId = stock.getStockId();
         this.stockName = stock.getStockName();
         this.price = stock.getPrice();
-        this.changeRate = stock.getChangeRate();
+        this.changeRate = stock.getChangeRate() == null ? 0.0 : stock.getChangeRate();
         this.createdAt = stock.getCreatedAt();
         this.updatedAt = stock.getUpdatedAt();
     }

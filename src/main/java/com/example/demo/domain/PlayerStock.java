@@ -50,6 +50,13 @@ public class PlayerStock {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void addQuantity(Long quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("More quantity entered than you have");
+        }
+        this.quantity += quantity;
+    }
+
     public void updateQuantity(Long quantity) {
         if (quantity < 0) {
             throw new IllegalArgumentException("More quantity entered than you have");

@@ -32,20 +32,35 @@ public class PlayerStockService {
         Player player = playerRepository.findPlayerByPlayerId(request.getPlayerId());
         Stock stock = stockRepository.findById(request.getStockId())
                 .orElseThrow(() -> new IllegalArgumentException("NOT FOUND STOCK " + request.getStockId()));
-        if (player.getPlayerPw().equals(request.getPlayerPw())) {
-            PlayerStock playerStock = playerStockRepository.save(PlayerStock.builder()
-                    .player(player)
-                    .stock(stock)
-                    .quantity(request.getQuantity())
-                    .build());
-
-            playerRepository.delete(player);
-            player.payMoney(stock.getPrice() * playerStock.getQuantity());
-            playerRepository.save(player);
-
-            return new CreatePlayerStockResponse(playerStock);
+        if (!player.getPlayerPw().equals(request.getPlayerPw())) {
+            throw new IllegalArgumentException("Incorrect pw");
         }
-        throw new IllegalArgumentException("Incorrect pw");
+
+        player.payMoney(request.getQuantity() * stock.getPrice());
+        playerRepository.save(player);
+
+        List<PlayerStock> playerStocks = playerStockRepository.findByPlayer(player);
+        PlayerStock existingPlayerStock = null;
+
+        if (playerStocks != null) {
+            for (PlayerStock ps : playerStocks) {
+                if (ps.getStock().getStockId().equals(request.getStockId())) {
+                    existingPlayerStock = ps;
+                    break;
+                }
+            }
+            if (existingPlayerStock != null) {
+                existingPlayerStock.addQuantity(request.getQuantity());
+                playerStockRepository.save(existingPlayerStock);
+                return new CreatePlayerStockResponse(existingPlayerStock);
+            }
+        }
+        PlayerStock newPlayerStock = PlayerStock.builder()
+                .player(player)
+                .stock(stock)
+                .quantity(request.getQuantity())
+                .build();
+        return new CreatePlayerStockResponse(playerStockRepository.save(newPlayerStock));
     }
 
     public void delete(DeletePlayerStockRequest request) {
@@ -54,7 +69,6 @@ public class PlayerStockService {
         Player player = playerStock.getPlayer();
         Stock stock = playerStock.getStock();
         if (player.getPlayerPw().equals(request.getPlayerPw())) {
-            playerRepository.delete(player);
             player.addMoney(stock.getPrice() * playerStock.getQuantity());
             playerRepository.save(player);
 
@@ -75,13 +89,12 @@ public class PlayerStockService {
         Player player = playerStock.getPlayer();
         Stock stock = playerStock.getStock();
         if (player.getPlayerPw().equals(request.getPlayerPw())) {
-            playerStockRepository.delete(playerStock);
             playerStock.updateQuantity(playerStock.getQuantity() - request.getReduceQuantity());
             playerStockRepository.save(playerStock);
 
-            playerRepository.delete(player);
             player.addMoney(stock.getPrice() * playerStock.getQuantity());
             playerRepository.save(player);
+            return new PlayerStockResponse(playerStock);
         }
         throw new IllegalArgumentException("Incorrect pw");
     }
