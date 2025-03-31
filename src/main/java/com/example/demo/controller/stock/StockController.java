@@ -34,7 +34,7 @@ public class StockController {
     }
 
     @GetMapping("/{stockName}")
-    public ResponseEntity<StockResponse> findStockByStockName(@PathVariable(name ="stockName") String stockName) {
+    public ResponseEntity<StockResponse> findStockByStockName(@PathVariable(name = "stockName") String stockName) {
         StockResponse stockResponse = stockService.findStockByStockName(stockName);
         return ResponseEntity.ok()
                 .body(stockResponse);
