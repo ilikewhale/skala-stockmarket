@@ -25,8 +25,9 @@ public class StockPriceScheduler {
             double changeRate = (random.nextDouble() * 4 - 2); // -2% ~ +2% 변동
             double newPrice = stock.getPrice() * (1 + changeRate / 100);
 
-            stock.setPrice((long) (Math.round(newPrice * 100.0) / 100.0)); // 소수점 2자리까지 반올림
-            stock.setChangeRate(Double.valueOf(String.format("%.2f", changeRate)));
+            stock.updatePrice((long) (Math.round(newPrice * 100.0) / 100.0)); // 소수점 2자리까지 반올림
+            stock.updateChangeRate(changeRate);
+            System.out.println("Generated changeRate: " + changeRate);
 
             stockRepository.save(stock);
         }

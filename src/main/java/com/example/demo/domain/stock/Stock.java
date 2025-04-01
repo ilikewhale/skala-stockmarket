@@ -28,7 +28,7 @@ public class Stock {
     @Column(name = "price", nullable = false)
     private Long price;
 
-    @Transient
+    @Column(name = "change_rate")
     private Double changeRate;
 
     @CreatedDate
@@ -52,11 +52,7 @@ public class Stock {
         this.price = newPrice;
     }
 
-    public void setPrice(Long newPrice) {
-        this.price = newPrice;
-    }
-
-    public void setChangeRate(Double newChangeRate) {
+    public void updateChangeRate(Double newChangeRate) {
         this.changeRate = newChangeRate;
     }
 }
