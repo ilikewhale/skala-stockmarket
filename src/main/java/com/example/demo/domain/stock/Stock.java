@@ -51,4 +51,12 @@ public class Stock {
     public void updatePrice(Long newPrice) {
         this.price = newPrice;
     }
+
+    public void setPrice(Long newPrice) {
+        this.price = newPrice;
+    }
+
+    public void setChangeRate(Double newChangeRate) {
+        this.changeRate = newChangeRate;
+    }
 }
