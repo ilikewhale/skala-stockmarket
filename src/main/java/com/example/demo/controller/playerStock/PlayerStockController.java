@@ -8,13 +8,13 @@ import com.example.demo.dto.playerStock.response.CreatePlayerStockResponse;
 import com.example.demo.dto.playerStock.response.PlayerStockResponse;
 import com.example.demo.dto.stock.response.StockResponse;
 import com.example.demo.service.playerStock.PlayerStockService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RequiredArgsConstructor
 @RestController
@@ -23,6 +23,7 @@ public class PlayerStockController {
 
     private final PlayerStockService playerStockService;
 
+    @Operation(summary = "Buy stock", description = "Sell some stock")
     @PostMapping("/buy")
     public ResponseEntity<CreatePlayerStockResponse> createPlayerStock(@RequestBody CreatePlayerStockRequest request) {
         CreatePlayerStockResponse createPlayerStockResponse = playerStockService.create(request);
@@ -30,6 +31,7 @@ public class PlayerStockController {
                 .body(createPlayerStockResponse);
     }
 
+    @Operation(summary = "Sell all stock", description = "Sell all stock")
     @PostMapping("/sell/all")
     public ResponseEntity<Void> deletePlayerStock(@RequestBody DeletePlayerStockRequest request) {
         playerStockService.delete(request);
@@ -37,6 +39,7 @@ public class PlayerStockController {
                 .build();
     }
 
+    @Operation(summary = "Sell some stock", description = "Sell some stock")
     @PatchMapping("/sell")
     public ResponseEntity<PlayerStockResponse> updateQuantityByPw(@RequestBody UpdateQuantityRequest request) {
         PlayerStockResponse playerStockResponse = playerStockService.updateQuantity(request);
@@ -44,6 +47,7 @@ public class PlayerStockController {
                 .body(playerStockResponse);
     }
 
+    @Operation(summary = "Find all player - stock", description = "Find all player - stock")
     @GetMapping
     public ResponseEntity<List<PlayerStockResponse>> findAll() {
         List<PlayerStockResponse> playerStockResponses = playerStockService.findAll();
@@ -51,6 +55,7 @@ public class PlayerStockController {
                 .body(playerStockResponses);
     }
 
+    @Operation(summary = "Find player own stock", description = "Find player own stock")
     @GetMapping("/{playerId}/all")
     public ResponseEntity<List<StockResponse>> findStockByPlayerId(@PathVariable(name = "playerId") String playerId) {
         List<StockResponse> stockResponses = playerStockService.findStockByPlayer(playerId);
@@ -58,6 +63,7 @@ public class PlayerStockController {
                 .body(stockResponses);
     }
 
+    @Operation(summary = "Find player by stock name", description = "Find player by stock name")
     @GetMapping("/{stockName}/stockholder")
     public ResponseEntity<List<PlayerResponse>> findPlayerByStockName(@PathVariable(name = "stockName") String stockName) {
         List<PlayerResponse> playerResponses = playerStockService.findPlayerByStock(stockName);

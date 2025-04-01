@@ -20,7 +20,7 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
-    @Operation(summary = "test",description = "test")
+    @Operation(summary = "Create player", description = "Create player")
     @PostMapping
     public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest request) {
         CreatePlayerResponse playerResponse = playerService.create(request);
@@ -28,6 +28,7 @@ public class PlayerController {
                 .body(playerResponse);
     }
 
+    @Operation(summary = "Find player by playerId", description = "Find player by playerId")
     @GetMapping("/{playerId}")
     public ResponseEntity<PlayerResponse> findPlayerByPlayerId(@PathVariable(name = "playerId") String playerId) {
         PlayerResponse playerResponse = playerService.findByPlayerId(playerId);
@@ -35,6 +36,7 @@ public class PlayerController {
                 .body(playerResponse);
     }
 
+    @Operation(summary = "Find password by confirmation", description = "Find password by confirmation")
     @PostMapping("/{playerId}/pw")
     public ResponseEntity<FindPasswordResponse> findPasswordByConfirmation(@PathVariable(name = "playerId") String playerId, @RequestBody FindPasswordRequest request) {
         FindPasswordResponse findPasswordResponse = playerService.findPwByConfirmation(playerId, request);
@@ -42,6 +44,7 @@ public class PlayerController {
                 .body(findPasswordResponse);
     }
 
+    @Operation(summary = "Find all players", description = "Find all players")
     @GetMapping
     public ResponseEntity<List<PlayerResponse>> findAllPlayer() {
         List<PlayerResponse> playerResponses = playerService.findAll();
@@ -49,6 +52,7 @@ public class PlayerController {
                 .body(playerResponses);
     }
 
+    @Operation(summary = "Update player by playerId", description = "Update player by playerId")
     @PatchMapping("/{playerId}")
     public ResponseEntity<UpdatePlayerResponse> updatePlayer(@PathVariable(name = "playerId") String playerId, @RequestBody UpdatePlayerRequest request) {
         UpdatePlayerResponse updatePlayerResponse = playerService.update(playerId, request);
@@ -56,6 +60,7 @@ public class PlayerController {
                 .body(updatePlayerResponse);
     }
 
+    @Operation(summary = "Delete player by playerId", description = "Delete player by playerId")
     @DeleteMapping("/{playerId}")
     public ResponseEntity<Void> deletePlayerByPlayerId(@PathVariable(name = "playerId") String playerId) {
         playerService.deleteByPlayerId(playerId);
@@ -63,6 +68,7 @@ public class PlayerController {
                 .build();
     }
 
+    @Operation(summary = "Update password by confirmation", description = "Update password by confirmation")
     @PatchMapping("/{playerId}/pw")
     public ResponseEntity<UpdatePasswordResponse> updatePasswordByConfirmation(@PathVariable(name = "playerId") String playerId, @RequestBody UpdatePasswordRequest request) {
         UpdatePasswordResponse playerPasswordResponse = playerService.updatePwByConfirmation(playerId, request);
@@ -70,6 +76,7 @@ public class PlayerController {
                 .body(playerPasswordResponse);
     }
 
+    @Operation(summary = "Update confirmation by password", description = "Update confirmation by password")
     @PatchMapping("/{playerId}/confirmation")
     public ResponseEntity<UpdateConfirmationResponse> updateConfirmationByPassword(@PathVariable(name = "playerId") String playerId, @RequestBody UpdateConfirmationRequest request) {
         UpdateConfirmationResponse playerConfirmationResponse = playerService.updateConfirmationByPw(playerId, request);
@@ -77,6 +84,7 @@ public class PlayerController {
                 .body(playerConfirmationResponse);
     }
 
+    @Operation(summary = "Add Money by password", description = "Add Money by password")
     @PatchMapping("/{playerId}/money/add")
     public ResponseEntity<UpdateMoneyResponse> addMoneyByPassword(@PathVariable(name = "playerId") String playerId, @RequestBody AddMoneyRequest request) {
         UpdateMoneyResponse updateMoneyResponse = playerService.addMoneyByPw(playerId, request);
@@ -84,6 +92,7 @@ public class PlayerController {
                 .body(updateMoneyResponse);
     }
 
+    @Operation(summary = "Withdraw money by password", description = "Withdraw money by password")
     @PatchMapping("/{playerId}/money/withdraw")
     public ResponseEntity<UpdateMoneyResponse> withdrawMoneyByPassword(@PathVariable(name = "playerId") String playerId, @RequestBody WithdrawMoneyRequest request) {
         UpdateMoneyResponse updateMoneyResponse = playerService.withdrawMoneyByPw(playerId, request);
@@ -91,6 +100,7 @@ public class PlayerController {
                 .body(updateMoneyResponse);
     }
 
+    @Operation(summary = "Login", description = "Login")
     @PostMapping("/{playerId}/login")
     public ResponseEntity<Boolean> login(@PathVariable(name = "playerId") String playerId, @RequestBody LoginRequest request) {
         Boolean login = playerService.loginByPw(playerId, request);

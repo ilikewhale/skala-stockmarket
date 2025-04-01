@@ -2,6 +2,7 @@ package com.example.demo.controller.stockTransaction;
 
 import com.example.demo.dto.stockTransaction.StockTransactionResponse;
 import com.example.demo.service.stockTransaction.StockTransactionService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class StockTransactionController {
 
     private final StockTransactionService transactionService;
 
+    @Operation(summary = "Find all transaction", description = "Find all transaction")
     @GetMapping
     public ResponseEntity<List<StockTransactionResponse>> findAll() {
         List<StockTransactionResponse> transactionResponses = transactionService.findAll();
@@ -25,6 +27,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find player transaction", description = "Find player transaction")
     @GetMapping("/player/{playerId}/all")
     public ResponseEntity<List<StockTransactionResponse>> findAllByPlayerId(@PathVariable(name = "playerId") String playerId) {
         List<StockTransactionResponse> transactionResponses = transactionService.findByPlayerId(playerId);
@@ -32,6 +35,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find player buy transaction", description = "Find player buy transaction")
     @GetMapping("/player/{playerId}/buy")
     public ResponseEntity<List<StockTransactionResponse>> findBuyByPlayerId(@PathVariable(name = "playerId") String playerId) {
         List<StockTransactionResponse> transactionResponses = transactionService.findBuyByPlayerId(playerId);
@@ -39,6 +43,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find player sell transaction", description = "Find player sell transaction")
     @GetMapping("/player/{playerId}/sell")
     public ResponseEntity<List<StockTransactionResponse>> findSellByPlayerId(@PathVariable(name = "playerId") String playerId) {
         List<StockTransactionResponse> transactionResponses = transactionService.findSellByPlayerId(playerId);
@@ -46,6 +51,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find transaction by stock", description = "Find transaction by stock")
     @GetMapping("/stock/{stockName}/all")
     public ResponseEntity<List<StockTransactionResponse>> findAllByStockId(@PathVariable(name = "stockName") String stockName) {
         List<StockTransactionResponse> transactionResponses = transactionService.findByStockName(stockName);
@@ -53,6 +59,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find buy transaction by stock", description = "Find buy transaction by stock")
     @GetMapping("/stock/{stockName}/buy")
     public ResponseEntity<List<StockTransactionResponse>> findBuyByStockName(@PathVariable(name = "stockName") String stockName) {
         List<StockTransactionResponse> transactionResponses = transactionService.findBuyByStockName(stockName);
@@ -60,6 +67,7 @@ public class StockTransactionController {
                 .body(transactionResponses);
     }
 
+    @Operation(summary = "Find sell transaction by stock", description = "Find sell transaction by stock")
     @GetMapping("/stock/{stockName}/sell")
     public ResponseEntity<List<StockTransactionResponse>> findSellByStockName(@PathVariable(name = "stockName") String stockName) {
         List<StockTransactionResponse> transactionResponses = transactionService.findSellByStockName(stockName);
