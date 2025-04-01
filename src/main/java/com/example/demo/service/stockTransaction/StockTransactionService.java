@@ -21,32 +21,32 @@ public class StockTransactionService {
     }
 
     public List<StockTransactionResponse> findByPlayerId(String playerId) {
-        return transactionRepository.findByPlayerId(playerId)
+        return transactionRepository.findByPlayerIdOrderByGeneratedAtDesc(playerId)
                 .stream().map(StockTransactionResponse::new).toList();
     }
 
     public List<StockTransactionResponse> findBuyByPlayerId(String playerId) {
-        return transactionRepository.findByPlayerId(playerId)
+        return transactionRepository.findByPlayerIdOrderByGeneratedAtDesc(playerId)
                 .stream().filter(this::isBuy).map(StockTransactionResponse::new).toList();
     }
 
     public List<StockTransactionResponse> findSellByPlayerId(String playerId) {
-        return transactionRepository.findByPlayerId(playerId)
+        return transactionRepository.findByPlayerIdOrderByGeneratedAtDesc(playerId)
                 .stream().filter(this::isSell).map(StockTransactionResponse::new).toList();
     }
 
     public List<StockTransactionResponse> findByStockName(String stockName) {
-        return transactionRepository.findByStockName(stockName)
+        return transactionRepository.findByStockNameOrderByGeneratedAtDesc(stockName)
                 .stream().map(StockTransactionResponse::new).toList();
     }
 
     public List<StockTransactionResponse> findBuyByStockName(String stockName) {
-        return transactionRepository.findByStockName(stockName)
+        return transactionRepository.findByStockNameOrderByGeneratedAtDesc(stockName)
                 .stream().filter(this::isBuy).map(StockTransactionResponse::new).toList();
     }
 
     public List<StockTransactionResponse> findSellByStockName(String stockName) {
-        return transactionRepository.findByStockName(stockName)
+        return transactionRepository.findByStockNameOrderByGeneratedAtDesc(stockName)
                 .stream().filter(this::isSell).map(StockTransactionResponse::new).toList();
     }
 

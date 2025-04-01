@@ -139,15 +139,15 @@ public class PlayerStockService {
                 .stream().map(PlayerStockResponse::new).toList();
     }
 
-    public List<StockResponse> findStockByPlayer(String playerId) {
+    public List<PlayerStockResponse> findStockByPlayer(String playerId) {
         Player player = playerRepository.findPlayerByPlayerId(playerId);
         return playerStockRepository.findByPlayer(player)
-                .stream().map(x -> new StockResponse(x.getStock())).toList();
+                .stream().map(PlayerStockResponse::new).toList();
     }
 
-    public List<PlayerResponse> findPlayerByStock(String stockName) {
+    public List<PlayerStockResponse> findPlayerByStock(String stockName) {
         Stock stock = stockRepository.findByStockName(stockName);
         return playerStockRepository.findByStock(stock)
-                .stream().map(x -> new PlayerResponse(x.getPlayer())).toList();
+                .stream().map(PlayerStockResponse::new).toList();
     }
 }

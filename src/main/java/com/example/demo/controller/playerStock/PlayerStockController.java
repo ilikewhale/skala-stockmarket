@@ -57,16 +57,16 @@ public class PlayerStockController {
 
     @Operation(summary = "Find player own stock", description = "Find player own stock")
     @GetMapping("/{playerId}/all")
-    public ResponseEntity<List<StockResponse>> findStockByPlayerId(@PathVariable(name = "playerId") String playerId) {
-        List<StockResponse> stockResponses = playerStockService.findStockByPlayer(playerId);
+    public ResponseEntity<List<PlayerStockResponse>> findStockByPlayerId(@PathVariable(name = "playerId") String playerId) {
+        List<PlayerStockResponse> stockResponses = playerStockService.findStockByPlayer(playerId);
         return ResponseEntity.ok()
                 .body(stockResponses);
     }
 
     @Operation(summary = "Find player by stock name", description = "Find player by stock name")
     @GetMapping("/{stockName}/stockholder")
-    public ResponseEntity<List<PlayerResponse>> findPlayerByStockName(@PathVariable(name = "stockName") String stockName) {
-        List<PlayerResponse> playerResponses = playerStockService.findPlayerByStock(stockName);
+    public ResponseEntity<List<PlayerStockResponse>> findPlayerByStockName(@PathVariable(name = "stockName") String stockName) {
+        List<PlayerStockResponse> playerResponses = playerStockService.findPlayerByStock(stockName);
         return ResponseEntity.ok()
                 .body(playerResponses);
     }
