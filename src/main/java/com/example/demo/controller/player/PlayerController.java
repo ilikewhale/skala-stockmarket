@@ -3,6 +3,9 @@ package com.example.demo.controller.player;
 import com.example.demo.dto.player.request.*;
 import com.example.demo.dto.player.response.*;
 import com.example.demo.service.player.PlayerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ public class PlayerController {
 
     private final PlayerService playerService;
 
+    @Operation(summary = "test",description = "test")
     @PostMapping
     public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest request) {
         CreatePlayerResponse playerResponse = playerService.create(request);
