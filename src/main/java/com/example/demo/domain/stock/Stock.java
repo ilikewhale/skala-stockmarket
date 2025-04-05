@@ -22,7 +22,7 @@ public class Stock {
     @Column(name = "stock_id")
     private Long stockId;
 
-    @Column(name = "stock_name", nullable = false, unique = true)
+    @Column(name = "stock_name", nullable = false, unique = true, length = 255)
     private String stockName;
 
     @Column(name = "price", nullable = false)

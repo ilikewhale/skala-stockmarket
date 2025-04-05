@@ -22,13 +22,13 @@ public class Player {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "player_id", nullable = false, unique = true)
+    @Column(name = "player_id", nullable = false, unique = true, length = 255)
     private String playerId;
 
-    @Column(name = "player_pw", nullable = false)
+    @Column(name = "player_pw", nullable = false, length = 255)
     private String playerPw;
 
-    @Column(name = "confirmation", nullable = false)
+    @Column(name = "confirmation", nullable = false, length = 255)
     private String confirmation;
 
     @Column(name = "player_money")
