@@ -54,15 +54,21 @@ public class PlayerStock {
 
     public void addQuantity(Long quantity) {
         if (quantity < 0) {
-            throw new IllegalArgumentException("More quantity entered than you have");
+            throw new IllegalArgumentException("Incorrect quantity");
         }
         this.quantity += quantity;
     }
 
-    public void updateQuantity(Long quantity) {
-        if (quantity < 0) {
+    public void reduceQuantity(Long enteredQuantity) {
+        if (enteredQuantity < 0) {
+            throw new IllegalArgumentException("Incorrect quantity");
+        }
+        if (quantity < enteredQuantity) {
             throw new IllegalArgumentException("More quantity entered than you have");
         }
-        this.quantity -= quantity;
+        if (quantity.equals(enteredQuantity)) {
+            throw new IllegalArgumentException("Proceed with all selling");
+        }
+        this.quantity -= enteredQuantity;
     }
 }

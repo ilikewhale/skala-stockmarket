@@ -4,13 +4,11 @@ import com.example.demo.domain.player.Player;
 import com.example.demo.domain.playerStock.PlayerStock;
 import com.example.demo.domain.stock.Stock;
 import com.example.demo.domain.stockTransaction.StockTransaction;
-import com.example.demo.dto.player.response.PlayerResponse;
 import com.example.demo.dto.playerStock.request.CreatePlayerStockRequest;
 import com.example.demo.dto.playerStock.request.DeletePlayerStockRequest;
 import com.example.demo.dto.playerStock.request.UpdateQuantityRequest;
 import com.example.demo.dto.playerStock.response.CreatePlayerStockResponse;
 import com.example.demo.dto.playerStock.response.PlayerStockResponse;
-import com.example.demo.dto.stock.response.StockResponse;
 import com.example.demo.repository.player.PlayerRepository;
 import com.example.demo.repository.playerStock.PlayerStockRepository;
 import com.example.demo.repository.stock.StockRepository;
@@ -114,10 +112,12 @@ public class PlayerStockService {
             throw new IllegalArgumentException("Incorrect pw");
         }
 
-        playerStock.updateQuantity(playerStock.getQuantity() - request.getReduceQuantity());
+        Long reduceQuantity = request.getReduceQuantity();
+
+        playerStock.reduceQuantity(reduceQuantity);
         playerStockRepository.save(playerStock);
 
-        player.addMoney(stock.getPrice() * playerStock.getQuantity());
+        player.addMoney(stock.getPrice() * reduceQuantity);
         playerRepository.save(player);
 
         stockTransactionRepository.save(
@@ -125,14 +125,15 @@ public class PlayerStockService {
                         .playerId(player.getPlayerId())
                         .stockName(stock.getStockName())
                         .transactionType("매도")
-                        .transactionQuantity(request.getReduceQuantity())
+                        .transactionQuantity(reduceQuantity)
                         .buyPrice(stock.getPrice())
-                        .totalPrice(stock.getPrice() * request.getReduceQuantity())
+                        .totalPrice(stock.getPrice() * reduceQuantity)
                         .build()
         );
 
         return new PlayerStockResponse(playerStock);
     }
+
 
     public List<PlayerStockResponse> findAll() {
         return playerStockRepository.findAll()
