@@ -1,8 +1,12 @@
 package com.example.demo.dto.player.request;
 
 import com.example.demo.domain.player.Player;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class CreatePlayerRequest {
 

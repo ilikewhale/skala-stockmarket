@@ -44,6 +44,14 @@ public class PlayerController {
                 .body(findPasswordResponse);
     }
 
+    @Operation(summary = "Find confirmation by password", description = "Find confirmation by password")
+    @PostMapping("/{playerId}/confirmation")
+    public ResponseEntity<FindConfirmationResponse> findConfirmationByPw(@PathVariable(name = "playerId") String playerId, @RequestBody FindConfirmationRequest request) {
+        FindConfirmationResponse findConfirmationResponse = playerService.findConfirmationByPw(playerId, request);
+        return ResponseEntity.ok()
+                .body(findConfirmationResponse);
+    }
+
     @Operation(summary = "Find all players", description = "Find all players")
     @GetMapping
     public ResponseEntity<List<PlayerResponse>> findAllPlayer() {

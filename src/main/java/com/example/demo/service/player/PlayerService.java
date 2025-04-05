@@ -92,4 +92,12 @@ public class PlayerService {
         Player player = playerRepository.findPlayerByPlayerId(playerId);
         return player.getPlayerPw().equals(request.getPlayerPassword());
     }
+
+    public FindConfirmationResponse findConfirmationByPw(String playerId, FindConfirmationRequest request) {
+        Player player = playerRepository.findPlayerByPlayerId(playerId);
+        if (player.getPlayerPw().equals(request.getPlayerPw())) {
+            return new FindConfirmationResponse(player);
+        }
+        throw new IllegalArgumentException("Incorrect pw");
+    }
 }
